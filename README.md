@@ -3,6 +3,22 @@
 <br><br><br>
 great job, thanks
 <br><br><br>
+
+在trainA、trainB上训练
+
+```
+python train.py --dataroot ../data/cifar_images --name cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --serial_batches --continue_train
+```
+
+在test上测试
+
+```
+python test.py --dataroot ../data/cifar_images --name cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --serial_batches
+```
+
+
+
+<br><br><br>
 <img src='imgs/horse2zebra.gif' align="right" width=384>
 
 <br><br><br>
