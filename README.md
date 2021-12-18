@@ -4,16 +4,32 @@
 great job, thanks
 <br><br><br>
 
-在trainA、trainB上训练
+用Unet在trainA、trainB上训练
 
 ```
-python train.py --dataroot ../data/cifar_images --name cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --serial_batches --continue_train
+python train.py --dataroot ../data/cifar_images --name cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --batch_size 64 --serial_batches --save_epoch_freq 1 --continue_train
 ```
 
 在test上测试
 
 ```
 python test.py --dataroot ../data/cifar_images --name cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --serial_batches
+```
+
+
+用resnet 试试
+
+```
+python train.py --dataroot ../data/cifar_images --name resnet_cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --serial_batches --batch_size 16 --netG resnet_6blocks  --save_epoch_freq 1 --continue_train
+```
+测试
+```
+python test.py --dataroot ../data/cifar_images --name resnet_cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --serial_batches --netG resnet_6blocks 
+```
+
+使用wgan进行训练
+```
+python train.py --dataroot ../data/cifar_images --name unet_wgan_cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --batch_size 16 --serial_batches --netG unet_256 --netD n_layers --n_layers_D 6 --save_epoch_freq 1 --init_type kaiming --lambda_L1 100 --gan_mode wgangp
 ```
 
 
