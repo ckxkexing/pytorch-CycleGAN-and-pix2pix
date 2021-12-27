@@ -29,10 +29,14 @@ python test.py --dataroot ../data/cifar_images --name resnet_cifar10colorize --m
 
 使用wgan进行训练
 ```
-python train.py --dataroot ../data/cifar_images --name unet_wgan_cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --batch_size 16 --serial_batches --netG unet_256 --netD n_layers --n_layers_D 6 --save_epoch_freq 1 --init_type kaiming --lambda_L1 100 --gan_mode wgangp
+python train.py --dataroot ../data/cifar_images --name unet_wgan_cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1 --batch_size 16 --serial_batches --netG unet_256 --netD n_layers --n_layers_D 6 --save_epoch_freq 1 --init_type kaiming --lambda_L1 100 --gan_mode wgangp --no_flip --continue_train
 ```
+!no_flip is important!
 
-
+wgan test
+```
+python test.py --dataroot ../data/cifar_images --name unet_wgan_cifar10colorize --model pix2pix --dataset_mode unaligned --direction AtoB --gpu_ids 2 --input_nc 1  --serial_batches --netG unet_256 --netD n_layers --n_layers_D 6 --init_type kaiming  --no_flip --eval --num_test -1
+```
 
 <br><br><br>
 <img src='imgs/horse2zebra.gif' align="right" width=384>
